@@ -1,0 +1,83 @@
+---
+title: "Assignment3: Interactive storytelling with data"
+author: "Bir Chhetri(3560319)"
+date: "15 October 2017"
+output: html_document
+runtime: shiny
+---
+
+
+#Story and the data 
+
+This story published in *The Conversation* FactCheck is related to a statement made by Social Services Minister Christian Porter in a discussion on QandA session of ABC channel . Downloadable data sets are available in *The Conversation* page and Australian Institute of Wealth and Welfare website.
+
+###Different type of drugs and their use rate between employed and unemployed people
+
+Australian federal budget (2017-18) introduced a new policy to randomly conduct a drug test to the recipients of the Newstart Allowance for job-seekers and Youth Allowance on which a QandA discussion was hosted by ABC news channel. In the discussion, Social Services Minister Christian Porter said "rates of drug use amongst unemployed are 2.5 times higher than amongst employed people" referring 2013 National Drug Strategy Household Survey as the source.
+
+A research was carried out to validate the statement using legitimate data retrieved from Australian Institute of Health and Welfare's 2013 National Drug Strategy Household Survey. The statistics consists of 24000 samples of employed and unemployed people across Australia, grouped as *Recent Users*, *Never Used* and *Ex-Users*. It is evident from the bar charts that higher percentage of recent drug users are amongst the unemployed people, however if we compare the percentage between each group of people and drug types, the above statement is incorrect. In recent drug user group, the ratio between employed and unemployed people is less than 2 for all drug types, except methamphetamine which is 2.43. On contrary, higher percentage of employed people were ex-users compared to unemployed. 
+
+So according to the source referred, the above statement that drug usage rate among unemployed people 2.5 times higher than employed people is false. It is only true for methamphetamine and cannot be generalised for other drug types or illicit use of any drugs.
+
+
+*Note:A person having used an illicit drug 12 months before the survey(2013) was grouped as recent user*
+
+```{r, include=FALSE}
+library(shiny)
+library(ggplot2)
+library(plotly)
+library(shinythemes)
+#setwd("C:/Users/Admin/Desktop/Sem4/DataVis/Assignment/Assignment3")
+drug <- read.csv("data.csv", header = TRUE)
+```
+
+
+```{r }
+#create server
+server2 <- function(input, output) {
+  output$drug <- renderPlotly({
+    
+     drug1=filter(drug,user_type == input$user_type)
+                 
+     ggplot(data=drug1, aes(x=reorder(drug_type,-percentage), y=percentage, fill=employment_status))+
+      geom_bar(stat = "identity", position="dodge", width = 0.7)+
+      scale_fill_manual(values = c("#00e6e6", "#bf40bf"))+
+      labs(x="Type of Drugs", 
+           y="Percentage",
+           title=paste(input$user_type)) +
+       theme_minimal()+
+      theme(plot.title = element_text(family = "Times", color="#666666", face="bold", size=14, hjust=0.5),
+      axis.text.x = element_text(vjust=1, hjust=1, angle=45, size = 7, color = "black"),
+      legend.title = element_blank())
+  })
+}
+
+# Create ui
+
+ui2 <- fluidPage(theme = shinytheme("cerulean"),
+  titlePanel("Drug use rate between employed and unemployed people(2013)"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("user_type", "Drug User type:", 
+               choices =  c("NeverUsed","RecentUser","ExUser"),
+               selected = "NeverUsed")
+    ),
+    mainPanel(plotlyOutput("drug", height = 330, width = 550))
+  )
+)
+
+# Deploy app
+
+shinyApp(ui = ui2, server = server2)
+```
+
+#References
+
+The Conversation. (2017). FactCheck Q&A: are rates of drug use 2.5 times higher among unemployed people than employed people?. [online] Available at: https://theconversation.com/factcheck-qanda-are-rates-of-drug-use-2-5-times-higher-among-unemployed-people-than-employed-people-78993 [Accessed 15 Oct. 2017].
+
+Australian Institute of Health and Welfare. (2017). Reports & statistics. [online] Available at: https://www.aihw.gov.au/reports-statistics [Accessed 15 Oct. 2017].
+
+
+
+
+

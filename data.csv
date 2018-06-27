@@ -1,0 +1,37 @@
+drug_type,percentage,employment_status,user_type
+Illicit use of any drug,48.8,Employed,NeverUsed
+Cannabis,54.9,Employed,NeverUsed
+Ecstasy,86.4,Employed,NeverUsed
+Methamphetamine,91.7,Employed,NeverUsed
+Cocaine,89.5,Employed,NeverUsed
+Pharmaceuticals,88.1,Employed,NeverUsed
+Illicit use of any drug,55.5,Unemployed,NeverUsed
+Cannabis,61.7,Unemployed,NeverUsed
+Ecstasy,87.7,Unemployed,NeverUsed
+Methamphetamine,89.9,Unemployed,NeverUsed
+Cocaine,90.5,Unemployed,NeverUsed
+Pharmaceuticals,86.6,Unemployed,NeverUsed
+Illicit use of any drug,16.8,Employed,RecentUser
+Cannabis,11.9,Employed,RecentUser
+Ecstasy,2.9,Employed,RecentUser
+Methamphetamine,2.3,Employed,RecentUser
+Cocaine,3,Employed,RecentUser
+Pharmaceuticals,4.5,Employed,RecentUser
+Illicit use of any drug,24.5,Unemployed,RecentUser
+Cannabis,18.5,Unemployed,RecentUser
+Ecstasy,5.1,Unemployed,RecentUser
+Methamphetamine,5.6,Unemployed,RecentUser
+Cocaine,4.2,Unemployed,RecentUser
+Pharmaceuticals,7.3,Unemployed,RecentUser
+Illicit use of any drug,34.4,Employed,ExUser
+Cannabis,33.2,Employed,ExUser
+Ecstasy,10.7,Employed,ExUser
+Methamphetamine,5.9,Employed,ExUser
+Cocaine,7.5,Employed,ExUser
+Pharmaceuticals,7.4,Employed,ExUser
+Illicit use of any drug,20,Unemployed,ExUser
+Cannabis,19.8,Unemployed,ExUser
+Ecstasy,7.2,Unemployed,ExUser
+Methamphetamine,4.5,Unemployed,ExUser
+Cocaine,5.3,Unemployed,ExUser
+Pharmaceuticals,6.1,Unemployed,ExUser
